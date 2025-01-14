@@ -3,7 +3,7 @@ name: Dispatch Image Build
 on:
   workflow_dispatch:
     inputs: 
-      imageNumber:
+      distinct_id:
 
 jobs:
   generate-file:
@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+        run: echo ${{ github.event.inputs.distinct_id }}
 
       - name: Generate the build-image-code.yml file
         run: |
