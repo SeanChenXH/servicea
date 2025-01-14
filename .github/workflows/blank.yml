@@ -1,0 +1,35 @@
+name: Dispatch Image Build
+
+on:
+  workflow_dispatch: # 手动触发
+    inputs:
+      imageNumber: # 定义参数
+        description: "The image number to include as a parameter in the file"
+        required: false
+        default: "0" # 默认值为 0
+
+jobs:
+  generate-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate the build-image-code.yml file
+        run: |
+          echo "parameters:" > build-image-code.yml
+          echo "  imageNumber: \${{ github.event.inputs.imageNumber }}" >> build-image-code.yml
+          echo "description: \"This file dynamically references a parameter passed via GitHub Actions.\"" >> build-image-code.yml
+          echo "Generated file content:"
+          cat build-image-code.yml
+
+      - name: Commit and push the generated file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git add build-image-code.yml
+          git commit -m "Generated build-image-code.yml with dynamic parameter reference"
+          git push
