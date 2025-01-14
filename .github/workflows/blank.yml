@@ -19,7 +19,7 @@ jobs:
       - name: Generate the build-image-code.yml file
         run: |
           echo "parameters:" > build-image-code.yml
-          echo "  imageNumber: \${{ github.event.inputs.imageNumber }}" >> build-image-code.yml
+          echo "  imageNumber: \${{ github.event.inputs.distinct_id }}" >> build-image-code.yml
           echo "description: \"This file dynamically references a parameter passed via GitHub Actions.\"" >> build-image-code.yml
           echo "Generated file content:"
           cat build-image-code.yml
