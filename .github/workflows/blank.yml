@@ -1,8 +1,9 @@
 name: Dispatch Image Build
 
 on:
-  repository_dispatch:
-    types: [my-event]
+  workflow_dispatch:
+    inputs: 
+      imageNumber:
 
 jobs:
   generate-file:
