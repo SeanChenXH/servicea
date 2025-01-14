@@ -1,12 +1,8 @@
 name: Dispatch Image Build
 
 on:
-  workflow_dispatch: # 手动触发
-    inputs:
-      imageNumber: # 定义参数
-        description: "The image number to include as a parameter in the file"
-        required: false
-        default: "0" # 默认值为 0
+  repository_dispatch:
+    types: [my-event]
 
 jobs:
   generate-file:
