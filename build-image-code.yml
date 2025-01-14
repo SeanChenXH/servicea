@@ -1,3 +1,3 @@
 parameters:
-  imageNumber: ${{ github.event.inputs.imageNumber }}
+  imageNumber: \2
 description: "This file dynamically references a parameter passed via GitHub Actions."
