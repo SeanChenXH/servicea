@@ -1,3 +1,3 @@
 parameters:
-  imageNumber: \2
+  imageNumber: \42
 description: "This file dynamically references a parameter passed via GitHub Actions."
